@@ -1,22 +1,32 @@
-import { View, Text, StyleSheet, TextInput, Alert } from "react-native";
+import { View, Text, TextInput, Alert, TouchableOpacity } from "react-native";
 
-import { LoginComponent, Title, Input, ButtonLogin } from "./LoginStyle";
+import { useState } from "react";
 
 export default function Login() {
-
   function submit() {
-    console.log(`vix`);
-    Alert.alert("VIX 2")
+    setLogin("SALVEEEEEE")
   }
 
-    return (
-        <LoginComponent>
-            <Title>Login</Title>
-            <Input placeholder="E-mail" />
-            <Input placeholder="Senha" />
-            <ButtonLogin onPress={submit}>
-                <Text style={{fontWeight:"bold"}}>Entrar</Text>
-            </ButtonLogin>
-        </LoginComponent>
-    );
+  const [login, setLogin] = useState('')
+
+  return (
+    <View className="flex-1 justify-center items-center gap-5">
+      <Text className="text-5xl font-bold mb-5">Login</Text>
+      <TextInput
+        placeholder="E-mail"
+        className="bg-gray-300 w-3/4 h-12 p-2 rounded-lg"
+      />
+      <TextInput
+        placeholder="Senha"
+        className="bg-gray-300 w-3/4 h-12 p-2 rounded-lg"
+      />
+      <TouchableOpacity onPress={submit}>
+        <View className="flex items-center justify-center bg-green-600 color-white font-bold w-[310] h-12 rounded-lg">
+          <Text className="color-white font-bold">Entrar</Text>
+        </View>
+      </TouchableOpacity>
+
+      <Text className="font-bold">{login}</Text>
+    </View>
+  );
 }
