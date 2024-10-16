@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
+import "../global.css"
 
-import "./global.css"
+import { View, Text, TouchableOpacity } from "react-native";
 
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-
-import Login from "./src/login/Login";
+import Login from "./screens/login/Login";
 
 export default function App() {
 
