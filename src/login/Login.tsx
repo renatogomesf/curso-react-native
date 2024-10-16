@@ -1,32 +1,27 @@
 import { View, Text, TextInput, Alert, TouchableOpacity } from "react-native";
 
-import { useState } from "react";
+import FontAwesome from '@expo/vector-icons/FontAwesome';
 
-export default function Login() {
-  function submit() {
-    setLogin("SALVEEEEEE")
-  }
+import { useEffect, useRef, useState } from "react";
 
-  const [login, setLogin] = useState('')
+export default function Login({email, icon, type}) {
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
+
+  const [check, setCheck] = useState(false);
+
+  useEffect(() => {
+    console.log("tome render");
+  });
 
   return (
-    <View className="flex-1 justify-center items-center gap-5">
-      <Text className="text-5xl font-bold mb-5">Login</Text>
+    <View className="flex-row w-10/12 mb-4 bg-gray-200 items-center justify-center p-2 rounded-lg">
+      <FontAwesome name={icon} size={24} color="black" />
       <TextInput
-        placeholder="E-mail"
-        className="bg-gray-300 w-3/4 h-12 p-2 rounded-lg"
+        keyboardType={type}
+        placeholder={email}
+        className="w-[300] h-12 p-2 rounded-lg"
       />
-      <TextInput
-        placeholder="Senha"
-        className="bg-gray-300 w-3/4 h-12 p-2 rounded-lg"
-      />
-      <TouchableOpacity onPress={submit}>
-        <View className="flex items-center justify-center bg-green-600 color-white font-bold w-[310] h-12 rounded-lg">
-          <Text className="color-white font-bold">Entrar</Text>
-        </View>
-      </TouchableOpacity>
-
-      <Text className="font-bold">{login}</Text>
     </View>
   );
 }
