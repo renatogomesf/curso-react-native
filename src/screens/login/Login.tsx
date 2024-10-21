@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  Keyboard,
+} from "react-native";
 
 import Input from "../../components/Input";
 import { useNavigation } from "@react-navigation/native";
@@ -12,7 +18,7 @@ export default function App() {
   const navigation: any = useNavigation();
 
   return (
-    <View className="flex-1 items-center justify-center">
+    <Pressable onPress={Keyboard.dismiss} className="flex-1 items-center justify-center">
       <Text className="text-5xl font-bold mb-5">Login</Text>
 
       <Input email="E-mail" icon="user-circle-o" type="email-address" />
@@ -28,6 +34,6 @@ export default function App() {
       </TouchableOpacity>
 
       <Text className="mt-10">{text}</Text>
-    </View>
+    </Pressable>
   );
 }
