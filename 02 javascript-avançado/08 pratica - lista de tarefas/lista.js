@@ -4,6 +4,24 @@ let inputTarefa = document.getElementById('tarefa')
 
 let tarefas = []
 
+
+function renderTarefa() {
+    lista.innerHTML = ''
+    
+    tarefas.map((element,index)=>{
+        let item = document.createElement('li')
+        let apagar = document.createElement('a')
+
+        apagar.setAttribute('href','#')
+        apagar.setAttribute('onclick', `excluirTarefa(${index})`)
+        apagar.innerText = 'Excluir'
+
+        item.innerHTML = element
+        item.appendChild(apagar)
+        lista.appendChild(item)
+    })
+}
+
 function adicionar() {
     
     if (inputTarefa.value === ''){
@@ -14,31 +32,12 @@ function adicionar() {
     let tarefa  = inputTarefa.value
     tarefas.push(tarefa)
     inputTarefa.value = ''
-    
-    console.log(tarefas);
-    
-    tarefas.map((elemento)=>{
-        let item = document.createElement('li')
-        let apagar = document.createElement('a')
-        apagar.setAttribute('href','#')
-        apagar.innerText = 'Excluir'
-        item.innerHTML = elemento
-        item.appendChild(apagar)
-        lista.appendChild(item)
-    })
 
+    renderTarefa()
+}
 
-    
-    // let item = document.createElement('li')
-    // let apagar = document.createElement('a')
-    // let br = document.createElement('br')
+function excluirTarefa(index) {
+    tarefas.splice(index,1)
 
-    // apagar.setAttribute('href','#')
-
-    // item.innerHTML = registar
-    // apagar.innerText = 'Excluir'
-
-    // item.appendChild(apagar)
-
-    // lista.appendChild(item)
+    renderTarefa()
 }
