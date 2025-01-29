@@ -2,7 +2,7 @@
 let lista = document.getElementById('lista')
 let inputTarefa = document.getElementById('tarefa')
 
-let tarefas = []
+let tarefas = JSON.parse(localStorage.getItem("@ListaTarefas")) || []
 
 
 function renderTarefa() {
@@ -22,6 +22,8 @@ function renderTarefa() {
     })
 }
 
+renderTarefa()
+
 function adicionar() {
     
     if (inputTarefa.value === ''){
@@ -34,10 +36,16 @@ function adicionar() {
     inputTarefa.value = ''
 
     renderTarefa()
+    salvarDados()
 }
 
 function excluirTarefa(index) {
     tarefas.splice(index,1)
 
     renderTarefa()
+    salvarDados()
+}
+
+function salvarDados() {
+    localStorage.setItem("@ListaTarefas",JSON.stringify(tarefas))
 }
