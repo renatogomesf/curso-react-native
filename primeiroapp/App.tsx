@@ -1,21 +1,24 @@
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { View, StatusBar } from 'react-native';
 
 import Aula1a4 from './modul06 basico/aulas 1 a 4/Aula1a4';
 import States from './modul06 basico/aula 05/States';
+import TamanhosDeF from './modul06 basico/aula 07/TamanhosDeF';
 
 export default function App() {
   return (
-    <View style={style.section}>
+    <View style={{ flex: 1 }}>
+      <StatusBar backgroundColor={'#669fad'} barStyle={'dark-content'} />
       {/* <Aula1a4 /> */}
-      <States/>
+      {/* <States/> */}
+      <TamanhosDeF />
     </View>
   );
 }
 
-const style = StyleSheet.create({
-  section: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+// const style = StyleSheet.create({
+//   section: {
+//     flex: 1,
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//   },
+// });
