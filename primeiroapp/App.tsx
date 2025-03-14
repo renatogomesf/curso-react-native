@@ -6,6 +6,7 @@ import TamanhosDeF from './modul06 basico/aula 07/TamanhosDeF';
 import FlexboxeAlinhamento from './modul06 basico/aula 08/FlexboxeAlinhamento';
 import Inputs from './modul06 basico/aula 09/Inputs';
 import Botoes from './modul06 basico/aula 10/Botoes';
+import AppBiscoito from './modul06 basico/aula 11 app/AppBiscoito';
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
       {/* <TamanhosDeF /> */}
       {/* <FlexboxeAlinhamento /> */}
       {/* <Inputs /> */}
-      <Botoes />
+      {/* <Botoes /> */}
+      <AppBiscoito />
     </View>
   );
 }
