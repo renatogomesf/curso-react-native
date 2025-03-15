@@ -8,6 +8,7 @@ import Inputs from './modul06 basico/aula 09/Inputs';
 import Botoes from './modul06 basico/aula 10/Botoes';
 import AppBiscoito from './modul06 basico/aula 11 app/AppBiscoito';
 import Cronometro from './modul06 basico/aula 13 app/Cronometro';
+import ScrollView from './modulo07 aprendendo mais/aula 02/ScrollView';
 
 export default function App() {
   return (
@@ -20,7 +21,8 @@ export default function App() {
       {/* <Inputs /> */}
       {/* <Botoes /> */}
       {/* <AppBiscoito /> */}
-      <Cronometro />
+      {/* <Cronometro /> */}
+      <ScrollView />
     </View>
   );
 }
