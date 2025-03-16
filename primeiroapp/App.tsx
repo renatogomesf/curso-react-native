@@ -10,6 +10,7 @@ import AppBiscoito from './modul06 basico/aula 11 app/AppBiscoito';
 import Cronometro from './modul06 basico/aula 13 app/Cronometro';
 import ScrollView from './modulo07 aprendendo mais/aula 02/ScrollView';
 import Flatlist from './modulo07 aprendendo mais/aula 03/Flatlist';
+import Componente01 from './modulo07 aprendendo mais/aula 04 separando componente/Componente01';
 
 export default function App() {
   return (
@@ -24,7 +25,8 @@ export default function App() {
       {/* <AppBiscoito /> */}
       {/* <Cronometro /> */}
       {/* <ScrollView /> */}
-      <Flatlist />
+      {/* <Flatlist /> */}
+      <Componente01 />
     </View>
   );
 }
