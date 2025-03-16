@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
   areaPessoa: {
     backgroundColor: '#747272',
     height: 200,
-    marginBottom: 15,
+    margin: 15,
+    padding: 15,
     justifyContent: 'center',
   },
   textoPessoa: {
