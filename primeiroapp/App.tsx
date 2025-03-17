@@ -11,6 +11,7 @@ import Cronometro from './modul06 basico/aula 13 app/Cronometro';
 import ScrollView from './modulo07 aprendendo mais/aula 02/ScrollView';
 import Flatlist from './modulo07 aprendendo mais/aula 03/Flatlist';
 import Componente01 from './modulo07 aprendendo mais/aula 04 separando componente/Componente01';
+import Pickerr from './modulo07 aprendendo mais/aula 06/Picker';
 
 export default function App() {
   return (
@@ -26,7 +27,8 @@ export default function App() {
       {/* <Cronometro /> */}
       {/* <ScrollView /> */}
       {/* <Flatlist /> */}
-      <Componente01 />
+      {/* <Componente01 /> */}
+      <Pickerr />
     </View>
   );
 }
