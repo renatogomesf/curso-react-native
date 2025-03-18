@@ -13,6 +13,7 @@ import Flatlist from './modulo07 aprendendo mais/aula 03/Flatlist';
 import Componente01 from './modulo07 aprendendo mais/aula 04 separando componente/Componente01';
 import Pickerr from './modulo07 aprendendo mais/aula 06/Picker';
 import Sliderr from './modulo07 aprendendo mais/aula 07/Sliderr';
+import Switchh from './modulo07 aprendendo mais/aula 08/Switchh';
 
 export default function App() {
   return (
@@ -30,7 +31,8 @@ export default function App() {
       {/* <Flatlist /> */}
       {/* <Componente01 /> */}
       {/* <Pickerr /> */}
-      <Sliderr />
+      {/* <Sliderr /> */}
+      <Switchh />
     </View>
   );
 }
