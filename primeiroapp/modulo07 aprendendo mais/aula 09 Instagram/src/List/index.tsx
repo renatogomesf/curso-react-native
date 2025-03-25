@@ -65,12 +65,8 @@ export default function List({ data }: DataDTO) {
 
       {mostraLikes(data.likers)}
 
-      <Text style={styles.nomeRodape}>
-        {data.nome}
-      </Text>
-      <Text style={styles.descRodape}>
-        {data.descricao}
-      </Text>
+      <Text style={styles.nomeRodape}>{data.nome}</Text>
+      <Text style={styles.descRodape}>{data.descricao}</Text>
     </View>
   );
 }
@@ -109,16 +105,16 @@ const styles = StyleSheet.create({
   },
   likes: {
     fontWeight: 'bold',
-    marginLeft: 5
+    marginLeft: 5,
   },
   nomeRodape: {
     fontSize: 18,
     fontWeight: 'bold',
-    paddingLeft: 5
+    paddingLeft: 5,
   },
   descRodape: {
     paddingLeft: 5,
     paddingBottom: 10,
-    fontSize: 15
-  }
+    fontSize: 15,
+  },
 });

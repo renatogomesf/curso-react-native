@@ -58,11 +58,11 @@ export default function AppInsta() {
   return (
     <View style={styles.conteiner}>
       <Header />
-      <FlatList 
-      showsVerticalScrollIndicator = {false}
-      keyExtractor={(item)=> item.id}
-      data={feed} 
-      renderItem={({item})=> <List data={item}/>}
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item) => item.id}
+        data={feed}
+        renderItem={({ item }) => <List data={item} />}
       />
     </View>
   );

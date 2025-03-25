@@ -15,6 +15,7 @@ import Pickerr from './modulo07 aprendendo mais/aula 06/Picker';
 import Sliderr from './modulo07 aprendendo mais/aula 07/Sliderr';
 import Switchh from './modulo07 aprendendo mais/aula 08/Switchh';
 import AppInsta from './modulo07 aprendendo mais/aula 09 Instagram/AppInsta';
+import UseEffect from './modulo07 aprendendo mais/aula 11/UseEffect';
 
 export default function App() {
   return (
@@ -34,7 +35,8 @@ export default function App() {
       {/* <Pickerr /> */}
       {/* <Sliderr /> */}
       {/* <Switchh /> */}
-      <AppInsta />
+      {/* <AppInsta /> */}
+      <UseEffect />
     </View>
   );
 }
