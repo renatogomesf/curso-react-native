@@ -16,6 +16,7 @@ import Sliderr from './modulo07 aprendendo mais/aula 07/Sliderr';
 import Switchh from './modulo07 aprendendo mais/aula 08/Switchh';
 import AppInsta from './modulo07 aprendendo mais/aula 09 Instagram/AppInsta';
 import UseEffect from './modulo07 aprendendo mais/aula 11/UseEffect';
+import UseEffectPT2 from './modulo07 aprendendo mais/aula 12/UseEffectPT2';
 
 export default function App() {
   return (
@@ -36,7 +37,8 @@ export default function App() {
       {/* <Sliderr /> */}
       {/* <Switchh /> */}
       {/* <AppInsta /> */}
-      <UseEffect />
+      {/* <UseEffect /> */}
+      <UseEffectPT2 />
     </View>
   );
 }
