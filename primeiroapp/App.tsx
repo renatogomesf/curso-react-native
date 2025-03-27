@@ -17,6 +17,7 @@ import Switchh from './modulo07 aprendendo mais/aula 08/Switchh';
 import AppInsta from './modulo07 aprendendo mais/aula 09 Instagram/AppInsta';
 import UseEffect from './modulo07 aprendendo mais/aula 11/UseEffect';
 import UseEffectPT2 from './modulo07 aprendendo mais/aula 12/UseEffectPT2';
+import UseMemo from './modulo07 aprendendo mais/aula 13/UseMemo';
 
 export default function App() {
   return (
@@ -38,7 +39,8 @@ export default function App() {
       {/* <Switchh /> */}
       {/* <AppInsta /> */}
       {/* <UseEffect /> */}
-      <UseEffectPT2 />
+      {/* <UseEffectPT2 /> */}
+      <UseMemo />
     </View>
   );
 }

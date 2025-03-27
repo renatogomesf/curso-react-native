@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,9 @@ import {
   TextInput,
 } from 'react-native';
 
-// salva no storage do aplicativo
-// espécie de banco de dados que mantem os dados mesmo depois de fechar o app ou desligar o celular.
-// OS DADOS SÓ SERÃO APAGADOS SE O APP FOR DESINSTALADO.
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function UseEffectPT2() {
+export default function UseMemo() {
   const [input, setInput] = useState('');
   const [nome, setNome] = useState('');
 
@@ -33,6 +30,13 @@ export default function UseEffectPT2() {
     setInput('')
   }
 
+
+  // memoriza um valor na constante e só muda o valor quando o que estiver no array de dependências mudar.
+  const letrasNome = useMemo(()=>{ // so chama o que tem dentro da função anonima quando o que estiver no array de dependêmcias mudar.
+    console.log("pegando quantidade de letras")
+    return nome.length
+  },[nome])
+
   return (
     <View style={styles.conteiner}>
       <View style={styles.viewImput}>
@@ -48,6 +52,8 @@ export default function UseEffectPT2() {
       </View>
 
       <Text style={styles.nome}>{nome}</Text>
+
+      <Text style={styles.nome}>tem {letrasNome} letras</Text>
     </View>
   );
 }
