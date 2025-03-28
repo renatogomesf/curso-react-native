@@ -19,6 +19,7 @@ import UseEffect from './modulo07 aprendendo mais/aula 11/UseEffect';
 import UseEffectPT2 from './modulo07 aprendendo mais/aula 12/UseEffectPT2';
 import UseMemo from './modulo07 aprendendo mais/aula 13/UseMemo';
 import UseRef from './modulo07 aprendendo mais/aula 14/UseRef';
+import Modall from './modulo07 aprendendo mais/aula 15/Modall';
 
 export default function App() {
   return (
@@ -42,7 +43,8 @@ export default function App() {
       {/* <UseEffect /> */}
       {/* <UseEffectPT2 /> */}
       {/* <UseMemo /> */}
-      <UseRef />
+      {/* <UseRef /> */}
+      <Modall />
     </View>
   );
 }
