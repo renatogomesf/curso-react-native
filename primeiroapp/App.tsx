@@ -18,6 +18,7 @@ import AppInsta from './modulo07 aprendendo mais/aula 09 Instagram/AppInsta';
 import UseEffect from './modulo07 aprendendo mais/aula 11/UseEffect';
 import UseEffectPT2 from './modulo07 aprendendo mais/aula 12/UseEffectPT2';
 import UseMemo from './modulo07 aprendendo mais/aula 13/UseMemo';
+import UseRef from './modulo07 aprendendo mais/aula 14/UseRef';
 
 export default function App() {
   return (
@@ -40,7 +41,8 @@ export default function App() {
       {/* <AppInsta /> */}
       {/* <UseEffect /> */}
       {/* <UseEffectPT2 /> */}
-      <UseMemo />
+      {/* <UseMemo /> */}
+      <UseRef />
     </View>
   );
 }
