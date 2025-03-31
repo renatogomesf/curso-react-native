@@ -1,0 +1,42 @@
+// Only import react-native-gesture-handler on native platforms
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import Home from './src/pages/home';
+import Sobre from './src/pages/sobre';
+
+const Stack = createNativeStackNavigator();
+
+export default function Navegacao() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{
+            title: 'Tela inicio',
+            headerStyle: {
+              backgroundColor: '#121212',
+            },
+            headerTintColor: '#fff',
+            headerShown: false,
+          }}
+        />
+
+        <Stack.Screen
+          name="Sobre"
+          component={Sobre}
+          options={{
+            title: 'Página sobre',
+            headerStyle: {
+              backgroundColor: '#121212',
+            },
+            headerTintColor: '#fff',
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
