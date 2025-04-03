@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './src/pages/home';
 import Sobre from './src/pages/sobre';
+import Contato from './src/pages/contato';
 
 const Stack = createNativeStackNavigator();
 
@@ -30,6 +31,18 @@ export default function Navegacao() {
           component={Sobre}
           options={{
             title: 'Página sobre',
+            headerStyle: {
+              backgroundColor: '#121212',
+            },
+            headerTintColor: '#fff',
+          }}
+        />
+
+        <Stack.Screen
+          name="Contato"
+          component={Contato}
+          options={{
+            title: 'Página contato',
             headerStyle: {
               backgroundColor: '#121212',
             },
