@@ -6,13 +6,13 @@ export default function Home() {
   const navigation: any = useNavigation();
 
   function navegarSobre() {
-    navigation.navigate('Sobre');
+    navigation.navigate('Detalhe');
   }
 
   return (
     <View style={styles.conteiner}>
       <Text>TELA HOME</Text>
-      <Button title="Ir para sobre" onPress={navegarSobre} />
+      <Button title="Ir para detalhes" onPress={navegarSobre} />
     </View>
   );
 }
