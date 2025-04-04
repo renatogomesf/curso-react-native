@@ -19,7 +19,19 @@ export default function Routes() {
         tabBarStyle: {
           backgroundColor: '#202225',
           borderTopWidth: 0, // tira a borda de cima da barra de navegação
+          height: 100, // altura da barra de navegação
         },
+        tabBarIconStyle:{
+            borderColor: '#fff',
+            borderWidth: 1,
+            width: 50,
+            height: 50,
+        },
+        tabBarLabelStyle:{
+            fontSize: 15,
+            marginTop: 5,
+            color: '#fff',
+        }
       }}
     >
       <Tab.Screen
@@ -54,7 +66,7 @@ export default function Routes() {
       />
 
       <Tab.Screen name="config" component={Contato} />
-      <Tab.Screen name="teste" component={Contato} />
+      {/* <Tab.Screen name="teste" component={Contato} /> */}
     </Tab.Navigator>
   );
 }
