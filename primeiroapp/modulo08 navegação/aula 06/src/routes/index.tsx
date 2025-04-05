@@ -15,7 +15,8 @@ export default function Routes() {
         drawerActiveTintColor: 'white',
         drawerActiveBackgroundColor: '#003CB3',
         drawerLabelStyle: {
-          
+          fontSize: 18,
+          fontWeight: 'bold',
         },
       }}
     >
