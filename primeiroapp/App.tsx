@@ -23,6 +23,7 @@ import Modall from './modulo07 aprendendo mais/aula 15/Modall';
 import Icon from './modulo08 navegação/aula 01/Icon';
 import Navegacao from './modulo08 navegação/aula 02/Navegacao';
 import Tabs from './modulo08 navegação/aula 04/Tabs';
+import Drawerr from './modulo08 navegação/aula 06/Drawerr';
 
 export default function App() {
   return (
@@ -50,7 +51,8 @@ export default function App() {
       {/* <Modall /> */}
       {/* <Icon /> */}
       {/* <Navegacao /> */}
-      <Tabs />
+      {/* <Tabs /> */}
+      <Drawerr />
     </View>
   );
 }
