@@ -24,6 +24,7 @@ import Icon from './modulo08 navegação/aula 01/Icon';
 import Navegacao from './modulo08 navegação/aula 02/Navegacao';
 import Tabs from './modulo08 navegação/aula 04/Tabs';
 import Drawerr from './modulo08 navegação/aula 06/Drawerr';
+import ReqHttp from './modulo09 avançando com RN/aula 01/ReqHttp';
 
 export default function App() {
   return (
@@ -52,7 +53,8 @@ export default function App() {
       {/* <Icon /> */}
       {/* <Navegacao /> */}
       {/* <Tabs /> */}
-      <Drawerr />
+      {/* <Drawerr /> */}
+      <ReqHttp />
     </View>
   );
 }
