@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   TextInput,
   TouchableOpacity,
+  Keyboard,
 } from 'react-native';
 
 import PickerItem from './src/picker';
@@ -15,6 +16,10 @@ export default function Conversor() {
   const [moeda, setMoeda] = useState([]);
   const [loading, setLoading] = useState(true);
   const [moedaSelecionada, setMoedaSelecionada] = useState(null);
+  const [valorDigitado, setValorDigitado]: any = useState();
+
+  const [valorMoeda, setValorMoeda] = useState(null);
+  const [valorConvertido, setValorConvertido]: any = useState(0);
 
   useEffect(() => {
     async function loadMoedas() {
@@ -36,6 +41,35 @@ export default function Conversor() {
 
     loadMoedas();
   }, []);
+
+  useEffect(() => {
+    setValorConvertido(0);
+  }, [moedaSelecionada]);
+
+  async function converter() {
+    if (
+      valorDigitado === 0 ||
+      valorDigitado === '' ||
+      moedaSelecionada === null ||
+      moedaSelecionada === 'default'
+    ) {
+      return;
+    }
+
+    const response = await api.get(`all/${moedaSelecionada}-BRL`);
+
+    let resultado =
+      response.data[moedaSelecionada].ask * parseFloat(valorDigitado);
+    setValorConvertido(
+      `${resultado.toLocaleString('pt-BR', {
+        style: 'currency',
+        currency: 'BRL',
+      })}`
+    );
+    setValorMoeda(valorDigitado);
+    setValorDigitado('');
+    Keyboard.dismiss();
+  }
 
   if (loading) {
     return (
@@ -69,12 +103,26 @@ export default function Conversor() {
             style={styles.input}
             keyboardType="numeric"
             placeholder="ex: 1.50"
+            value={valorDigitado}
+            onChangeText={(item) => setValorDigitado(item)}
           />
         </View>
 
-        <TouchableOpacity style={styles.botaoArea}>
+        <TouchableOpacity style={styles.botaoArea} onPress={converter}>
           <Text style={styles.botaoText}>Converter</Text>
         </TouchableOpacity>
+
+        {valorConvertido !== 0 && (
+          <View style={styles.areaResultado}>
+            <Text style={styles.valorConvertido}>
+              {valorMoeda} {moedaSelecionada}
+            </Text>
+            <Text style={{ fontSize: 18, margin: 8, color: '#000' }}>
+              Corresponde a
+            </Text>
+            <Text style={styles.valorConvertido}>{valorConvertido}</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -126,5 +174,19 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 16,
     fontWeight: 'bold',
-  }
+  },
+  areaResultado: {
+    backgroundColor: '#F9F9F9',
+    width: '90%',
+    padding: 24,
+    marginTop: 34,
+    borderRadius: 8,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  valorConvertido: {
+    fontSize: 20,
+    color: '#000',
+    fontWeight: 'bold',
+  },
 });
