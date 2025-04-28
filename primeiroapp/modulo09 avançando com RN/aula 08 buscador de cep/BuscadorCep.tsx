@@ -6,8 +6,9 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  // garante que o app não fique sobre a status bar. principalmente quando estiver no iOS
   SafeAreaView,
-  Keyboard, // garante que o app não fique sobre a status bar. principalmente quando estiver no iOS
+  Keyboard,
 } from 'react-native';
 
 import api from './src/services/api';
