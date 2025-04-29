@@ -27,6 +27,7 @@ import Drawerr from './modulo08 navegação/aula 06/Drawerr';
 import ReqHttp from './modulo09 avançando com RN/aula 01/ReqHttp';
 import Conversor from './modulo09 avançando com RN/aula 04 Conversor de moedas/Conversor';
 import BuscadorCep from './modulo09 avançando com RN/aula 08 buscador de cep/BuscadorCep';
+import Animacoes from './modulo10 animações/aula 01/Animacoes';
 
 export default function App() {
   return (
@@ -58,7 +59,8 @@ export default function App() {
       {/* <Drawerr /> */}
       {/* <ReqHttp /> */}
       {/* <Conversor /> */}
-      <BuscadorCep />
+      {/* <BuscadorCep /> */}
+      <Animacoes />
     </View>
   );
 }
