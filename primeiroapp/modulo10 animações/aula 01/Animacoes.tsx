@@ -14,11 +14,6 @@ export default function Animacoes() {
       duration: 2000,
       useNativeDriver: false,
     }).start();
-    Animated.timing(altAnimada, {
-      toValue: 300,
-      duration: 2000,
-      useNativeDriver: false,
-    }).start();
   }, []);
 
   return (
