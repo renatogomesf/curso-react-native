@@ -30,6 +30,7 @@ import BuscadorCep from './modulo09 avançando com RN/aula 08 buscador de cep/Bu
 import Animacoes from './modulo10 animações/aula 01/Animacoes';
 import AnimacoesSequenciaParalelo from './modulo10 animações/aula 02/AnimacoesSequenciaParalelo';
 import AnimacoesLoop from './modulo10 animações/aula 03/AnimacoesLoop';
+import Interpolacao from './modulo10 animações/aula 04/Interpolacao';
 
 export default function App() {
   return (
@@ -64,7 +65,8 @@ export default function App() {
       {/* <BuscadorCep /> */}
       {/* <Animacoes /> */}
       {/* <AnimacoesSequenciaParalelo /> */}
-      <AnimacoesLoop />
+      {/* <AnimacoesLoop /> */}
+      <Interpolacao />
     </View>
   );
 }
