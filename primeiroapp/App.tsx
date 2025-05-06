@@ -31,6 +31,7 @@ import Animacoes from './modulo10 animações/aula 01/Animacoes';
 import AnimacoesSequenciaParalelo from './modulo10 animações/aula 02/AnimacoesSequenciaParalelo';
 import AnimacoesLoop from './modulo10 animações/aula 03/AnimacoesLoop';
 import Interpolacao from './modulo10 animações/aula 04/Interpolacao';
+import Animatables from './modulo10 animações/aula 05/Animatable';
 
 export default function App() {
   return (
@@ -66,7 +67,8 @@ export default function App() {
       {/* <Animacoes /> */}
       {/* <AnimacoesSequenciaParalelo /> */}
       {/* <AnimacoesLoop /> */}
-      <Interpolacao />
+      {/* <Interpolacao /> */}
+      <Animatables />
     </View>
   );
 }
