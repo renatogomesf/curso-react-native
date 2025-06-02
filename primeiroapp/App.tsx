@@ -32,7 +32,7 @@ import AnimacoesSequenciaParalelo from './modulo10 animações/aula 02/Animacoes
 import AnimacoesLoop from './modulo10 animações/aula 03/AnimacoesLoop';
 import Interpolacao from './modulo10 animações/aula 04/Interpolacao';
 import Animatables from './modulo10 animações/aula 05/Animatable';
-import Introducao from './modulo11 firebase/aula 01/Introducao';
+import Introducao from './modulo11 firebase/aula 01 a 04/Introducao';
 
 export default function App() {
   return (
