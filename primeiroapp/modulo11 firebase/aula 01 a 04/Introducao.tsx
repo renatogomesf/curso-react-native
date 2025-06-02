@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useEffect, useState } from 'react';
 
 // instancia do banco de dados que faz a conecção.
-import { db } from '../../src/firebase/firebaseConnection';
+import { db } from '../../firebase/firebaseConnection';
 
 // doc: conecnta ao db numa coleção e documento específico.
 // getDoc: pega as informações do "doc"
