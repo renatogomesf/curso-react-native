@@ -26,10 +26,10 @@ import {
 } from 'firebase/firestore';
 
 interface User {
-  id: string
-  nome: string
-  idade: string
-  cargo: string
+  id: string;
+  nome: string;
+  idade: string;
+  cargo: string;
 }
 
 export default function Cadastro() {
@@ -46,24 +46,39 @@ export default function Cadastro() {
       // caso deseje um item, usa-se "doc". caso eu queira uma lista, usa-se "collection"
       const usersRef = collection(db, 'users');
 
-      getDocs(usersRef)
-        .then((snapshot) => {
-          let lista: User[] = [];
+      onSnapshot(usersRef, (snapshot) => {
+        let lista: User[] = [];
 
-          snapshot.forEach((doc) => {
-            lista.push({
-              id: doc.id,
-              nome: doc.data().nome,
-              idade: doc.data().idade,
-              cargo: doc.data().cargo,
-            });
+        snapshot.forEach((doc) => {
+          lista.push({
+            id: doc.id,
+            nome: doc.data().nome,
+            idade: doc.data().idade,
+            cargo: doc.data().cargo,
           });
-
-          setUsers(lista);
-        })
-        .catch((erro) => {
-          console.log(erro);
         });
+
+        setUsers(lista);
+      });
+
+      // getDocs(usersRef)
+      //   .then((snapshot) => {
+      //     let lista: User[] = [];
+
+      //     snapshot.forEach((doc) => {
+      //       lista.push({
+      //         id: doc.id,
+      //         nome: doc.data().nome,
+      //         idade: doc.data().idade,
+      //         cargo: doc.data().cargo,
+      //       });
+      //     });
+
+      //     setUsers(lista);
+      //   })
+      //   .catch((erro) => {
+      //     console.log(erro);
+      //   });
     }
 
     getDados();
@@ -162,7 +177,7 @@ export default function Cadastro() {
         style={styles.list}
         data={users}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({item})=><Users user={item}/>}
+        renderItem={({ item }) => <Users user={item} />}
       />
     </View>
   );
@@ -198,5 +213,5 @@ const styles = StyleSheet.create({
     marginTop: 8,
     marginLeft: 8,
     marginRight: 8,
-  }
+  },
 });

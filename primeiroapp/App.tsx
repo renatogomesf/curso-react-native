@@ -33,7 +33,7 @@ import AnimacoesLoop from './modulo10 animações/aula 03/AnimacoesLoop';
 import Interpolacao from './modulo10 animações/aula 04/Interpolacao';
 import Animatables from './modulo10 animações/aula 05/Animatable';
 import Introducao from './modulo11 firebase/aula 01 a 04/Introducao';
-import Cadastro from './modulo11 firebase/aula 05 a 07/Cadastro';
+import Cadastro from './modulo11 firebase/aula 05 a 09/Cadastro';
 
 
 export default function App() {

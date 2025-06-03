@@ -26,7 +26,8 @@ export default function Introducao() {
       //   console.log(err)
       // })
 
-      // fica observando o banco de dados e retorna as mudanças
+      // fica observando o banco de dados e retorna quando há mudanças
+      // cuidado no uso pois gasta um pouco mais de processamento.
       onSnapshot(doc(db,"users","1"), (doc)=>{
         setNome(doc.data()?.nome)
       })
