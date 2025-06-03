@@ -17,7 +17,7 @@ export default function Introducao() {
 
       // const docref = doc(db, "users", "1")
       
-      // // busca 1 vez no banco de dados
+      // // busca 1 vez no banco de dados e tras somente um item.
       // getDoc(docref)
       // .then((snapshot)=>{
       //  setNome(snapshot.data()?.nome)

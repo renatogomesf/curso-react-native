@@ -4,8 +4,11 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
+  FlatList,
 } from 'react-native';
 import { useEffect, useState } from 'react';
+
+import Users from './Users';
 
 // instancia do banco de dados que faz a conecção.
 import { db } from '../../firebase/firebaseConnection';
@@ -19,7 +22,15 @@ import {
   setDoc,
   collection,
   addDoc,
+  getDocs,
 } from 'firebase/firestore';
+
+interface User {
+  id: string
+  nome: string
+  idade: string
+  cargo: string
+}
 
 export default function Cadastro() {
   const [nome, setNome] = useState('');
@@ -28,22 +39,31 @@ export default function Cadastro() {
 
   const [showForm, setShowForm] = useState(true);
 
+  const [users, setUsers] = useState<User[]>([]);
+
   useEffect(() => {
     async function getDados() {
-      // const docref = doc(db, "users", "1")
-      // // busca 1 vez no banco de dados
-      // getdoc("doc de referencia")
-      // getDoc(docref)
-      // .then((snapshot)=>{
-      //  setNome(snapshot.data()?.nome)
-      // })
-      // .catch((err)=>{
-      //   console.log(err)
-      // })
-      // fica observando o banco de dados e retorna as mudanças
-      // onSnapshot(doc(db, 'users', '1'), (doc) => {
-      //   setNome(doc.data()?.nome);
-      // });
+      // caso deseje um item, usa-se "doc". caso eu queira uma lista, usa-se "collection"
+      const usersRef = collection(db, 'users');
+
+      getDocs(usersRef)
+        .then((snapshot) => {
+          let lista: User[] = [];
+
+          snapshot.forEach((doc) => {
+            lista.push({
+              id: doc.id,
+              nome: doc.data().nome,
+              idade: doc.data().idade,
+              cargo: doc.data().cargo,
+            });
+          });
+
+          setUsers(lista);
+        })
+        .catch((erro) => {
+          console.log(erro);
+        });
     }
 
     getDados();
@@ -134,6 +154,16 @@ export default function Cadastro() {
           {showForm ? 'Esconder' : 'Mostrar'} formulário
         </Text>
       </TouchableOpacity>
+
+      <Text style={{ marginTop: 14, marginLeft: 8, fontSize: 20 }}>
+        Usuários
+      </Text>
+      <FlatList
+        style={styles.list}
+        data={users}
+        keyExtractor={(item) => String(item.id)}
+        renderItem={({item})=><Users user={item}/>}
+      />
     </View>
   );
 }
@@ -164,4 +194,9 @@ const styles = StyleSheet.create({
     marginRight: 8,
     marginBottom: 8,
   },
+  list: {
+    marginTop: 8,
+    marginLeft: 8,
+    marginRight: 8,
+  }
 });
