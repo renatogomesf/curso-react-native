@@ -23,6 +23,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  updateDoc,
 } from 'firebase/firestore';
 
 interface User {
@@ -38,6 +39,8 @@ export default function Cadastro() {
   const [cargo, setCargo] = useState('');
 
   const [showForm, setShowForm] = useState(true);
+
+  const [isEditing, setIsEditing] = useState('');
 
   const [users, setUsers] = useState<User[]>([]);
 
@@ -127,6 +130,29 @@ export default function Cadastro() {
       });
   }
 
+  async function handleEdit() {
+    const docRef = doc(db, 'users', isEditing);
+
+    // updateDoc("conecção com db, coleção e item da coleção", {"o que deseja atualizar do item"})
+    await updateDoc(docRef, {
+      nome: nome,
+      idade: idade,
+      cargo: cargo,
+    });
+
+    setNome('');
+    setIdade('');
+    setCargo('');
+    setIsEditing('');
+  }
+
+  function editUser(data: any) {
+    setNome(data.nome);
+    setIdade(data.idade);
+    setCargo(data.cargo);
+    setIsEditing(data.id);
+  }
+
   return (
     <View style={styles.container}>
       {showForm && (
@@ -155,19 +181,23 @@ export default function Cadastro() {
             onChangeText={(text) => setCargo(text)}
           />
 
-          <TouchableOpacity style={styles.button} onPress={handleRegister}>
-            <Text style={styles.buttonText}>Adicionar</Text>
-          </TouchableOpacity>
+          {isEditing !== '' ? (
+            <TouchableOpacity style={styles.button} onPress={handleEdit}>
+              <Text style={styles.buttonText}>Editar Usuário</Text>
+            </TouchableOpacity>
+          ) : (
+            <TouchableOpacity style={styles.button} onPress={handleRegister}>
+              <Text style={styles.buttonText}>Adicionar Usuário</Text>
+            </TouchableOpacity>
+          )}
         </View>
       )}
 
       <TouchableOpacity
-        style={styles.button}
+        style={styles.buttonShow}
         onPress={() => setShowForm(!showForm)}
       >
-        <Text style={styles.buttonText}>
-          {showForm ? 'Esconder' : 'Mostrar'} formulário
-        </Text>
+        <Text style={''}>{showForm ? 'Esconder' : 'Mostrar'} formulário</Text>
       </TouchableOpacity>
 
       <Text style={{ marginTop: 14, marginLeft: 8, fontSize: 20 }}>
@@ -177,7 +207,9 @@ export default function Cadastro() {
         style={styles.list}
         data={users}
         keyExtractor={(item) => String(item.id)}
-        renderItem={({ item }) => <Users user={item} />}
+        renderItem={({ item }) => (
+          <Users user={item} hendleEdit={(item: any) => editUser(item)} />
+        )}
       />
     </View>
   );
@@ -193,6 +225,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 8,
     marginRight: 8,
+  },
+  buttonShow: {
+    color: '#000',
+    marginTop: 10,
+    marginLeft: 8,
+    marginRight: 8,
+    padding: 8,
+    alignItems: 'center',
   },
   buttonText: {
     padding: 8,
