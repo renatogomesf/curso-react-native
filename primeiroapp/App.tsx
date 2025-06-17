@@ -34,6 +34,7 @@ import Interpolacao from './modulo10 animações/aula 04/Interpolacao';
 import Animatables from './modulo10 animações/aula 05/Animatable';
 import Introducao from './modulo11 firebase/aula 01 a 04/Introducao';
 import Cadastro from './modulo11 firebase/aula 05 a 11/Cadastro';
+import Auth from './modulo11 firebase/aula 12/Auth';
 
 
 export default function App() {
@@ -73,7 +74,8 @@ export default function App() {
       {/* <Interpolacao /> */}
       {/* <Animatables /> */}
       {/* <Introducao /> */}
-      <Cadastro />
+      {/* <Cadastro /> */}
+      <Auth/>
     </View>
   );
 }
