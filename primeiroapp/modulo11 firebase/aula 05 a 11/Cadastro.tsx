@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import Users from './Users';
 
 // instancia do banco de dados que faz a conecção.
-import { db } from '../../firebase/firebaseConnection';
+import { db, auth } from '../../firebase/firebaseConnection';
 
 // doc: conecnta ao db numa coleção e documento específico.
 // getDoc: pega as informações do "doc"
@@ -25,6 +25,8 @@ import {
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
+
+import { signOut } from 'firebase/auth';
 
 interface User {
   id: string;
@@ -153,6 +155,10 @@ export default function Cadastro() {
     setIsEditing(data.id);
   }
 
+  async function handleLogout() {
+    await signOut(auth)
+  }
+
   return (
     <View style={styles.container}>
       {showForm && (
@@ -211,6 +217,10 @@ export default function Cadastro() {
           <Users user={item} hendleEdit={(item: any) => editUser(item)} />
         )}
       />
+
+      <TouchableOpacity style={styles.button} onPress={handleLogout}>
+        <Text style={[styles.buttonText, {backgroundColor: '#727e0a'}]}>Sair da conta</Text>
+      </TouchableOpacity>
     </View>
   );
 }

@@ -13,35 +13,44 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
-  signOut
+  signOut,
 } from 'firebase/auth';
+
+import Cadastro from '../aula 05 a 11/Cadastro';
 
 export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [authUser, setAuthUser] = useState({});
+  const [authUser, setAuthUser] = useState<any>(null);
 
-  useEffect(()=>{
-    
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
     // onAuthStateChanged: verifica sem tem algum usuário autenticado/ usuário logado ou não.
     // passa a comunicação com o banco(sistema de autenticação) e ele retorna uma função anônima com um parâmetro que pode ter algo ou ser nulo. pode ter alguem logado ou não.
-    const unsub = onAuthStateChanged(auth, (user)=>{
-      if(user){
+    const unsub = onAuthStateChanged(auth, (user) => {
+      if (user) {
         setAuthUser({
           email: user.email,
           uid: user.uid,
         });
 
-        console.log("tem um usuário logado")
-        console.log(user.email)
-        return
+        setLoading(false)
+
+        console.log('tem um usuário logado');
+        console.log(user.email);
+        return;
       }
-    })
-  },[])
+
+      setAuthUser(null);
+      setLoading(false)
+    });
+  }, []);
 
   async function handleCreateUser() {
     // params: sitema de autenticação, email, senha(minimo de 6 caracteres pedidos pelo firebase)
+    // quando cria o usuário ele já faz o login também.
     const user = await createUserWithEmailAndPassword(auth, email, password);
     console.log(user);
   }
@@ -56,8 +65,8 @@ export default function Auth() {
           uid: user.user.uid,
         });
 
-        setEmail('')
-        setPassword('')
+        setEmail('');
+        setPassword('');
       })
       .catch((error) => {
         if (error.code === 'auth/missing-password') {
@@ -71,16 +80,23 @@ export default function Auth() {
 
   async function handleLogout() {
     // verifica o usuário logado e desloga ele.
-    await signOut(auth)
-    setAuthUser({})
+    await signOut(auth);
+    setAuthUser({});
   }
 
+  if (authUser) {
+    return (
+      <View style={styles.container}>
+        <Cadastro />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 16, marginLeft: 8, marginBottom: 14 }}>
-        Usuário logado: {authUser && authUser?.email}
-      </Text>
+      
+      {/* so exibe o que está depois dos "&&" quando o que estiver atrá deles for true*/}
+      {loading && (<Text style={{fontSize: 20, marginLeft: 8}}>Carregando...</Text>)}
 
       <Text style={styles.text}>Email:</Text>
       <TextInput
@@ -107,9 +123,14 @@ export default function Auth() {
         <Text style={styles.buttonText}>Criar uma conta</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity style={[styles.button,{backgroundColor: '#b42b2b'}]} onPress={handleLogout}>
-        <Text style={styles.buttonText}>Sair da conta</Text>
-      </TouchableOpacity>
+      {authUser && (
+        <TouchableOpacity
+          style={[styles.button, { backgroundColor: '#b42b2b' }]}
+          onPress={handleLogout}
+        >
+          <Text style={styles.buttonText}>Sair da conta</Text>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }
