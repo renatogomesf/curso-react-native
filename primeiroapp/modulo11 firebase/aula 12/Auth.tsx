@@ -6,19 +6,39 @@ import {
   TextInput,
 } from 'react-native';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { auth } from '../../firebase/firebaseConnection';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
 } from 'firebase/auth';
 
 export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const [authUser, setAuthUser] = useState({})
+  const [authUser, setAuthUser] = useState({});
+
+  useEffect(()=>{
+    
+    // onAuthStateChanged: verifica sem tem algum usuário autenticado/ usuário logado ou não.
+    // passa a comunicação com o banco(sistema de autenticação) e ele retorna uma função anônima com um parâmetro que pode ter algo ou ser nulo. pode ter alguem logado ou não.
+    const unsub = onAuthStateChanged(auth, (user)=>{
+      if(user){
+        setAuthUser({
+          email: user.email,
+          uid: user.uid,
+        });
+
+        console.log("tem um usuário logado")
+        console.log(user.email)
+        return
+      }
+    })
+  },[])
 
   async function handleCreateUser() {
     // params: sitema de autenticação, email, senha(minimo de 6 caracteres pedidos pelo firebase)
@@ -33,25 +53,34 @@ export default function Auth() {
         console.log(user);
         setAuthUser({
           email: user.user.email,
-          uid: user.user.uid
-        })
+          uid: user.user.uid,
+        });
+
+        setEmail('')
+        setPassword('')
       })
       .catch((error) => {
-
-        if(error.code === 'auth/missing-password'){
-          console.log("a senha é obrigatória")
-          return
+        if (error.code === 'auth/missing-password') {
+          console.log('a senha é obrigatória');
+          return;
         }
 
         console.log(error.code);
       });
   }
 
+  async function handleLogout() {
+    // verifica o usuário logado e desloga ele.
+    await signOut(auth)
+    setAuthUser({})
+  }
+
+
   return (
     <View style={styles.container}>
-
-      <Text>Usuário logado: {authUser && authUser?.email}</Text>
-
+      <Text style={{ fontSize: 16, marginLeft: 8, marginBottom: 14 }}>
+        Usuário logado: {authUser && authUser?.email}
+      </Text>
 
       <Text style={styles.text}>Email:</Text>
       <TextInput
@@ -76,6 +105,10 @@ export default function Auth() {
 
       <TouchableOpacity style={styles.button} onPress={handleCreateUser}>
         <Text style={styles.buttonText}>Criar uma conta</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={[styles.button,{backgroundColor: '#b42b2b'}]} onPress={handleLogout}>
+        <Text style={styles.buttonText}>Sair da conta</Text>
       </TouchableOpacity>
     </View>
   );
