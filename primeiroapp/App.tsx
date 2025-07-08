@@ -35,7 +35,7 @@ import Animatables from './modulo10 animações/aula 05/Animatable';
 import Introducao from './modulo11 firebase/aula 01 a 04/Introducao';
 import Cadastro from './modulo11 firebase/aula 05 a 11/Cadastro';
 import Auth from './modulo11 firebase/aula 12/Auth';
-
+import RouteAppCarrinho from './modulo13 carrinho de compras/RouteAppCarrinho';
 
 export default function App() {
   return (
@@ -75,7 +75,8 @@ export default function App() {
       {/* <Animatables /> */}
       {/* <Introducao /> */}
       {/* <Cadastro /> */}
-      <Auth/>
+      {/* <Auth/> */}
+      <RouteAppCarrinho />
     </View>
   );
 }
