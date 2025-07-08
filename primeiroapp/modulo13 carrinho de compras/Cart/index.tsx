@@ -1,27 +1,75 @@
+import { useContext, useState, useEffect } from 'react';
+import { ProductContext } from '../Context';
+
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default function Cart() {
+  const { productAdded, setProductAdded } = useContext(ProductContext);
+
+  const [total, setTotal] = useState(0);
+
+  function soma() {
+    let soma = 0;
+    productAdded.map((item: any) => {
+      soma += item.price * item.amount;
+    });
+    setTotal(soma);
+  }
+
+  useEffect(() => {
+    soma();
+  }, [productAdded]);
+
+  function decrement(index: any) {
+    productAdded[index].amount--;
+
+    if (productAdded[index].amount == 0) {
+      const result = productAdded.filter((element: any) => element.amount != 0);
+      setProductAdded(result);
+    }
+    soma();
+  }
+
+  function increment(index: any) {
+    productAdded[index].amount++;
+
+    const result = productAdded.filter((element: any) => element.amount > 0);
+    setProductAdded(result);
+
+    soma();
+  }
+
   return (
     <View style={styles.container}>
-      <View key={''} style={styles.item}>
-        <View style={styles.itemText}>
-          <Text style={styles.itemName}>coca cola</Text>
+      {productAdded.map((item: any, index: any) => {
+        return (
+          <View key={index} style={styles.item}>
+            <View style={styles.itemText}>
+              <Text style={styles.itemName}>{item.name}</Text>
 
-          <Text style={styles.itemPrice}>R$ 19.90</Text>
-        </View>
+              <Text style={styles.itemPrice}>R$ {item.price.toFixed(2)}</Text>
+            </View>
 
-        <View style={styles.amount}>
-          <TouchableOpacity style={styles.amountButton}>
-            <Text style={styles.amountButtonText}>-</Text>
-          </TouchableOpacity>
-          <Text>1</Text>
-          <TouchableOpacity style={styles.amountButton}>
-            <Text>+</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
+            <View style={styles.amount}>
+              <TouchableOpacity
+                onPress={() => decrement(index)}
+                style={styles.amountButton}
+              >
+                <Text style={styles.amountButtonText}>-</Text>
+              </TouchableOpacity>
+              <Text>{item.amount}</Text>
+              <TouchableOpacity
+                onPress={() => increment(index)}
+                style={styles.amountButton}
+              >
+                <Text>+</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        );
+      })}
 
-      <Text style={styles.total}>Total: R$ 6.50</Text>
+      <Text style={styles.total}>Total: R$ {total.toFixed(2)}</Text>
     </View>
   );
 }

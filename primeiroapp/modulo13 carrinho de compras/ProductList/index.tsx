@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { ProductContext } from '../Context';
+
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Feather from '@expo/vector-icons/Feather';
@@ -15,54 +18,38 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 export default function ProductList() {
   const navigation = useNavigation<NavigationProps>();
 
-  const products = [
-    {
-      id: '1',
-      name: 'coca cola',
-      price: 19.9,
-    },
-    {
-      id: '2',
-      name: 'chocolate',
-      price: 6.5,
-    },
-    {
-      id: '3',
-      name: 'queijo 500g',
-      price: 15,
-    },
-    {
-      id: '4',
-      name: 'batata frita',
-      price: 23.9,
-    },
-    {
-      id: '5',
-      name: 'guarana lata',
-      price: 6.0,
-    },
-  ];
+  const { products, addProductOnList, productAdded } =
+    useContext(ProductContext);
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Lista de produtos</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Meu Carrinho')}>
+        <TouchableOpacity
+          style={styles.cartButton}
+          onPress={() => navigation.navigate('Meu Carrinho')}
+        >
           <Feather name="shopping-cart" size={30} color="black" />
+          <View style={styles.cartAmount}>
+            <Text style={styles.cartAmountText}>{productAdded.length}</Text>
+          </View>
         </TouchableOpacity>
       </View>
 
       <View style={styles.productList}>
-        {products.map((item, index) => {
+        {products.map((item: any, index: number) => {
           return (
             <View key={index} style={styles.item}>
               <View style={styles.itemText}>
                 <Text style={styles.itemName}>{item.name}</Text>
 
-                <Text style={styles.itemPrice}>R$ {item.price}</Text>
+                <Text style={styles.itemPrice}>R$ {item.price.toFixed(2)}</Text>
               </View>
 
-              <TouchableOpacity style={styles.itemAdd}>
+              <TouchableOpacity
+                style={styles.itemAdd}
+                onPress={() => addProductOnList(item)}
+              >
                 <Text style={styles.itemAddText}>+</Text>
               </TouchableOpacity>
             </View>
@@ -88,7 +75,21 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25,
   },
-  headerCart: {},
+  cartButton: { position: 'relative' },
+  cartAmount: {
+    position: 'absolute',
+    top: 15,
+    left: -10,
+    backgroundColor: '#5c9dff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 22,
+    height: 22,
+    borderRadius: 11,
+  },
+  cartAmountText: {
+    color: '#fff',
+  },
   productList: {
     marginTop: 20,
   },
