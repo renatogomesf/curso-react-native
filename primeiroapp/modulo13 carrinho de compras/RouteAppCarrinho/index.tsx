@@ -1,4 +1,3 @@
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import ProductList from '../ProductList';
@@ -8,23 +7,21 @@ const Stack = createNativeStackNavigator();
 
 export default function RouteAppCarrinho() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="ProductList"
-          component={ProductList}
-          options={{
-            headerShown: false,
-          }}
-        />
-        <Stack.Screen
-          name="Meu Carrinho"
-          component={Cart}
-          options={{
-            headerShown: true,
-          }}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ProductList"
+        component={ProductList}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Meu Carrinho"
+        component={Cart}
+        options={{
+          headerShown: true,
+        }}
+      />
+    </Stack.Navigator>
   );
 }

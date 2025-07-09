@@ -1,4 +1,5 @@
 import { View, StatusBar } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 
 import Aula1a4 from './modul06 basico/aula 1 a 4/Aula1a4';
 import States from './modul06 basico/aula 05/States';
@@ -41,7 +42,7 @@ import ProductProvider from './modulo13 carrinho de compras/Context';
 export default function App() {
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar backgroundColor={'#fff'} barStyle={'dark-content'} />
+      <StatusBar backgroundColor="#fff" barStyle={'dark-content'} />
       {/* <Aula1a4 /> */}
       {/* <States/> */}
       {/* <TamanhosDeF /> */}
@@ -77,9 +78,11 @@ export default function App() {
       {/* <Introducao /> */}
       {/* <Cadastro /> */}
       {/* <Auth/> */}
-      <ProductProvider>
-        <RouteAppCarrinho />
-      </ProductProvider>
+      <NavigationContainer>
+        <ProductProvider>
+          <RouteAppCarrinho />
+        </ProductProvider>
+      </NavigationContainer>
     </View>
   );
 }

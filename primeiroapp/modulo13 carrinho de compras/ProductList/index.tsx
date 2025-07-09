@@ -1,12 +1,20 @@
 import { useContext } from 'react';
 import { ProductContext } from '../Context';
 
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from 'react-native';
 
 import Feather from '@expo/vector-icons/Feather';
 
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
+import Product from '../components/Product';
 
 type RootStackParamList = {
   'Meu Carrinho': undefined;
@@ -18,7 +26,7 @@ type NavigationProps = NativeStackNavigationProp<RootStackParamList>;
 export default function ProductList() {
   const navigation = useNavigation<NavigationProps>();
 
-  const { products, addProductOnList, productAdded } =
+  const { products, productAdded, addProductOnList } =
     useContext(ProductContext);
 
   return (
@@ -37,24 +45,18 @@ export default function ProductList() {
       </View>
 
       <View style={styles.productList}>
-        {products.map((item: any, index: number) => {
-          return (
-            <View key={index} style={styles.item}>
-              <View style={styles.itemText}>
-                <Text style={styles.itemName}>{item.name}</Text>
-
-                <Text style={styles.itemPrice}>R$ {item.price.toFixed(2)}</Text>
-              </View>
-
-              <TouchableOpacity
-                style={styles.itemAdd}
-                onPress={() => addProductOnList(item)}
-              >
-                <Text style={styles.itemAddText}>+</Text>
-              </TouchableOpacity>
-            </View>
-          );
-        })}
+        <FlatList
+          data={products}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+            <Product
+              item={item}
+              index={index}
+              addProductOnList={addProductOnList}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+        />
       </View>
     </View>
   );
@@ -79,7 +81,7 @@ const styles = StyleSheet.create({
   cartAmount: {
     position: 'absolute',
     top: 15,
-    left: -10,
+    left: -7,
     backgroundColor: '#5c9dff',
     justifyContent: 'center',
     alignItems: 'center',
@@ -92,31 +94,6 @@ const styles = StyleSheet.create({
   },
   productList: {
     marginTop: 20,
+    marginBottom: 20,
   },
-  item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 5,
-    padding: 10,
-    height: 80,
-    marginBottom: 15,
-  },
-  itemText: {},
-  itemName: {
-    fontWeight: 'bold',
-    fontSize: 17,
-  },
-  itemPrice: {},
-  itemAdd: {
-    backgroundColor: '#5c9dff',
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  itemAddText: {},
 });

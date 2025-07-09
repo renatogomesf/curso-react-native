@@ -1,7 +1,9 @@
 import { useContext, useState, useEffect } from 'react';
 import { ProductContext } from '../Context';
 
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList } from 'react-native';
+
+import CartList from '../components/CartList';
 
 export default function Cart() {
   const { productAdded, setProductAdded } = useContext(ProductContext);
@@ -41,33 +43,25 @@ export default function Cart() {
 
   return (
     <View style={styles.container}>
-      {productAdded.map((item: any, index: any) => {
-        return (
-          <View key={index} style={styles.item}>
-            <View style={styles.itemText}>
-              <Text style={styles.itemName}>{item.name}</Text>
-
-              <Text style={styles.itemPrice}>R$ {item.price.toFixed(2)}</Text>
-            </View>
-
-            <View style={styles.amount}>
-              <TouchableOpacity
-                onPress={() => decrement(index)}
-                style={styles.amountButton}
-              >
-                <Text style={styles.amountButtonText}>-</Text>
-              </TouchableOpacity>
-              <Text>{item.amount}</Text>
-              <TouchableOpacity
-                onPress={() => increment(index)}
-                style={styles.amountButton}
-              >
-                <Text>+</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        );
-      })}
+      {productAdded == '' ? (
+        <Text style={styles.noProduct}>Sem produtos no carrinho</Text>
+      ) : (
+        <View>
+          <FlatList
+            data={productAdded}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item, index }) => (
+              <CartList
+                item={item}
+                index={index}
+                decrement={decrement}
+                increment={increment}
+              />
+            )}
+            showsVerticalScrollIndicator={false}
+          />
+        </View>
+      )}
 
       <Text style={styles.total}>Total: R$ {total.toFixed(2)}</Text>
     </View>
@@ -84,38 +78,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
-  item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#000',
-    borderRadius: 5,
-    padding: 10,
-    height: 80,
-    marginBottom: 15,
-  },
-  itemText: {},
-  itemName: {
-    fontWeight: 'bold',
-    fontSize: 17,
-  },
-  itemPrice: {},
-  amountButton: {
-    backgroundColor: '#5c9dff',
-    width: 40,
-    height: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5,
-  },
-  amountButtonText: {
-    fontSize: 25,
-  },
-  amount: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 18,
+  noProduct: {
+    textAlign: 'center',
+    marginVertical: 20,
   },
 });
