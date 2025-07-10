@@ -1,5 +1,15 @@
 {
   "expo": {
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "The app accesses your photos to let you share them with your friends.",
+          "cameraPermission": "Permição para acessar a camera do seu smartphone.",
+          "microphonePermission": "Permição para acessar o microfone do seu smartphone."
+        }
+      ]
+    ],
     "name": "primeiroapp",
     "slug": "primeiroapp",
     "version": "1.0.0",

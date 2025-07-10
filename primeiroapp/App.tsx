@@ -38,6 +38,7 @@ import Cadastro from './modulo11 firebase/aula 05 a 11/Cadastro';
 import Auth from './modulo11 firebase/aula 12/Auth';
 import RouteAppCarrinho from './modulo13 carrinho de compras/RouteAppCarrinho';
 import ProductProvider from './modulo13 carrinho de compras/Context';
+import Camera from './modulo14 camera/aula 01 a 03/Camera';
 
 export default function App() {
   return (
@@ -78,11 +79,12 @@ export default function App() {
       {/* <Introducao /> */}
       {/* <Cadastro /> */}
       {/* <Auth/> */}
-      <NavigationContainer>
+      {/* <NavigationContainer>
         <ProductProvider>
           <RouteAppCarrinho />
         </ProductProvider>
-      </NavigationContainer>
+      </NavigationContainer> */}
+      <Camera />
     </View>
   );
 }
