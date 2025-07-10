@@ -43,27 +43,27 @@ export default function Cart() {
 
   return (
     <View style={styles.container}>
-      {productAdded == '' ? (
-        <Text style={styles.noProduct}>Sem produtos no carrinho</Text>
-      ) : (
-        <View>
-          <FlatList
-            data={productAdded}
-            keyExtractor={(item) => item.id}
-            renderItem={({ item, index }) => (
-              <CartList
-                item={item}
-                index={index}
-                decrement={decrement}
-                increment={increment}
-              />
-            )}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
-      )}
-
-      <Text style={styles.total}>Total: R$ {total.toFixed(2)}</Text>
+      <View>
+        <FlatList
+          data={productAdded}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+            <CartList
+              item={item}
+              index={index}
+              decrement={decrement}
+              increment={increment}
+            />
+          )}
+          showsVerticalScrollIndicator={false}
+          ListEmptyComponent={() => (
+            <Text style={styles.noProduct}>Sem produtos no carrinho</Text>
+          )}
+          ListFooterComponent={() => (
+            <Text style={styles.total}>Total: R$ {total.toFixed(2)}</Text>
+          )}
+        />
+      </View>
     </View>
   );
 }
