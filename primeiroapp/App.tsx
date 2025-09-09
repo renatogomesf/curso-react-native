@@ -66,7 +66,7 @@ export default function App() {
       {/* <Modall /> */}
       {/* <Icon /> */}
       {/* <Navegacao /> */}
-      {/* <Tabs /> */}
+      <Tabs />
       {/* <Drawerr /> */}
       {/* <ReqHttp /> */}
       {/* <Conversor /> */}
@@ -84,7 +84,7 @@ export default function App() {
           <RouteAppCarrinho />
         </ProductProvider>
       </NavigationContainer> */}
-      <Camera />
+      {/* <Camera /> */}
     </View>
   );
 }
